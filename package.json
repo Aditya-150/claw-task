@@ -36,8 +36,10 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@radix-ui/themes": "^3.1.1",
     "@redux-devtools/core": "^4.0.0",
     "@reduxjs/toolkit": "^2.2.6",
+    "preline": "^2.3.0",
     "redux": "^5.0.1",
     "webpack-dev-server": "^5.0.4"
   }

@@ -3,8 +3,19 @@ import Navigation from "./components/Navigation/Navigation.jsx";
 import { Route, Routes } from "react-router-dom";
 import About from "./routes/About/About.jsx";
 import Contact from "./routes/Contact/Contact.jsx";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import "preline/preline";
+
 
 export default function App() {
+   const location = useLocation();
+
+   useEffect(() => {
+     if (window.HSStaticMethods) {
+       window.HSStaticMethods.autoInit();
+     }
+   }, [location.pathname]);
   return (
     <div>
       <Routes>
