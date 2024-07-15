@@ -7,6 +7,7 @@ import "preline/preline";
 import Home from "./routes/Home/Home.jsx";
 import Book from "./routes/Book/Book.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import PrivacyPolicy from "./routes/PrivacyPolicy/PrivacyPolicy.jsx";
 
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="book" element={<Book />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy/>} />
       </Routes>
       <Footer />
     </div>
