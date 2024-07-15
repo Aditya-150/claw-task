@@ -44,7 +44,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
         type: "asset/resource",
       },
       {
@@ -57,6 +57,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
     }),
+    new ESLintPlugin(options),
     //new BundleAnalyzerPlugin(),
   ],
   resolve: {
