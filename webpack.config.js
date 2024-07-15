@@ -61,7 +61,9 @@ module.exports = {
     //   extensions: ["js", "jsx", "mjs"],
     //   overrideConfigFile: path.resolve(__dirname, "eslint.config.mjs"),
     // }),
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "disabled",
+    }),
   ],
   resolve: {
     extensions: [".js", ".jsx", ".md"],
