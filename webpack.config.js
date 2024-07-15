@@ -59,7 +59,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
     }),
-    new ESLintPlugin(options),
+    new ESLintPlugin(),
     new BundleAnalyzerPlugin(),
   ],
   resolve: {
