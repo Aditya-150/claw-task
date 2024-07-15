@@ -1,7 +1,9 @@
+/* eslint-disable no-undef */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -11,7 +13,7 @@ module.exports = {
     filename: "index.js",
     clean: true,
   },
-  //devtool: 'source-map',
+  // devtool: 'source-map',
   devServer: {
     static: {
       directory: path.resolve(__dirname, "dist"),
@@ -58,7 +60,7 @@ module.exports = {
       template: path.resolve(__dirname, "public", "index.html"),
     }),
     new ESLintPlugin(options),
-    //new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
   resolve: {
     extensions: [".js", ".jsx", ".md"],
