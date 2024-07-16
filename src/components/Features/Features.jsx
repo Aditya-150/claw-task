@@ -52,7 +52,7 @@ export default function Features() {
                       Flexible Booking
                     </span>
                     <span className="block mt-1 text-gray-800">
-                      Schedule your ride on weekdays & weekends between 3 PM -
+                      Schedule your ride on weekdays & Saturdays between 3 PM -
                       12 AM.
                     </span>
                   </span>
