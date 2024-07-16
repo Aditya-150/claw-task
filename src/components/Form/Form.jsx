@@ -126,6 +126,7 @@ const Form = () => {
 
       if (response.status === 200) {
         console.log("Event created: ", response.result);
+        const eventLink = response.result.htmlLink;
         const formattedDateTime = `${step2Data?.time}, ${new Date(
           step2Data?.date
         ).toLocaleDateString("en-US", {

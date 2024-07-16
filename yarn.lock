@@ -1459,6 +1459,13 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
+"@plunk/node@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@plunk/node/-/node-3.0.2.tgz#adb9fac66e0df347a7e8c5c18207e24fcf3c4708"
+  integrity sha512-6sn8Iog59dVi9vhPWNoWRGHwb29WS2ZRTgIMsMHpVLX9ksQi5XbhJ3rmd71J9gNocYCllz92Tb7fHIZqN08RqQ==
+  dependencies:
+    tslib "^2.4.0"
+
 "@polka/url@^1.0.0-next.24":
   version "1.0.0-next.25"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.25.tgz#f077fdc0b5d0078d30893396ff4827a13f99e817"
@@ -2176,7 +2183,7 @@
   resolved "https://registry.yarnpkg.com/@react-email/preview/-/preview-0.0.9.tgz#c5d1b999268009b8ca11fb56ae2c7084c2f2d7f2"
   integrity sha512-2fyAA/zzZYfYmxfyn3p2YOIU30klyA6Dq4ytyWq4nfzQWWglt5hNDE0cMhObvRtfjM9ghMSVtoELAb0MWiF/kw==
 
-"@react-email/render@0.0.16":
+"@react-email/render@0.0.16", "@react-email/render@^0.0.16":
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/@react-email/render/-/render-0.0.16.tgz#cd53cf080699c9d09181c02541a745f9d2d59d5e"
   integrity sha512-wDaMy27xAq1cJHtSFptp0DTKPuV2GYhloqia95ub/DH9Dea1aWYsbdM918MOc/b/HvVS3w1z8DWzfAk13bGStQ==

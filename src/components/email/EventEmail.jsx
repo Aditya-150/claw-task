@@ -1,3 +1,4 @@
+// src/components/email/EventEmail.jsx
 import React from "react";
 import {
   Html,
@@ -12,10 +13,16 @@ import {
   Img,
 } from "@react-email/components";
 import logo from "../../assets/images/logo.svg";
-import Barcode from "react-barcode";
-import {horseData} from "../Form/horseData";
 
-const EventEmail = ({ horseName, date, time, location, eventLink, name }) => (
+const EventEmail = ({
+  horse,
+  date,
+  time,
+  location,
+  eventLink,
+  name,
+  barcodeImage,
+}) => (
   <Tailwind
     config={{
       theme: {
@@ -29,10 +36,7 @@ const EventEmail = ({ horseName, date, time, location, eventLink, name }) => (
       <Body>
         <Heading>Your Horse Ride Booking Details</Heading>
         <Container>
-          <div
-            className="bg-gray-200 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-200
- rounded-xl flex flex-col justify-between p-8 gap-32 text-white w-full"
-          >
+          <div className="bg-gray-200 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-200 rounded-xl flex flex-col justify-between p-8 gap-32 text-white w-full">
             <div className="flex-shrink-0 flex row items-start justify-between">
               <div className="flex flex-col items-start gap-3">
                 <Text className="uppercase font-semibold text-lg">{name}</Text>
@@ -49,17 +53,12 @@ const EventEmail = ({ horseName, date, time, location, eventLink, name }) => (
               <div className="flex row items-center justify-between gap-2">
                 <Img
                   className="inline-block size-8 rounded-full ring-2 ring-white"
-                  src={(horseData.filter((horse) => horse.name === horseName)).image}
+                  src={logo}
                   alt="Image Description"
                 />
-                <p>{horseName}</p>
+                <p>{horse}</p>
               </div>
-              <Barcode
-                value={time + " " + date}
-                background="transparent"
-                lineColor="white"
-                className="w-48 h-fit"
-              />
+              <Img src={barcodeImage} alt="Barcode" className="w-48 h-fit" />
             </div>
           </div>
         </Container>

@@ -38,10 +38,11 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@plunk/node": "^3.0.2",
     "@preline/stepper": "^2.3.0",
     "@radix-ui/themes": "^3.1.1",
     "@react-email/components": "^0.0.21",
-    "@react-email/render": "0.0.16",
+    "@react-email/render": "^0.0.16",
     "@react-email/tailwind": "0.0.18",
     "@redux-devtools/core": "^4.0.0",
     "@reduxjs/toolkit": "^2.2.6",
