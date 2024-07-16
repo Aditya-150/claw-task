@@ -4,7 +4,6 @@ import html2canvas from "html2canvas";
 import JsBarcode from "jsbarcode";
 import EventEmail from "../components/email/EventEmail";
 import { createElement } from "react";
-import ReactDOMServer from "react-dom/server";
 
 const generateBarcodeImage = async (text) => {
   const canvas = document.createElement("canvas");
@@ -51,7 +50,7 @@ const sendEmail = async ({
   );
 
   const plunk = new Plunk(
-    "pk_4231496fe30f4ad6b21a7f275990004618f0003654445c30"
+    "sk_edd90823deaba804366d670752aa5f00be00d7118f61ee48"
   );
 
   try {
