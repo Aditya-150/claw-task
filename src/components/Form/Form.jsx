@@ -93,41 +93,45 @@ const Form = () => {
   };
 
   const handleFinish = async () => {
-    localStorage.setItem("step3Data", JSON.stringify(step3Data));
-
-    console.log("Step 2 Data:", step2Data);
-
-    if (!step2Data?.date || !step2Data?.time) {
-      console.error("Invalid date or time value: date or time is missing");
-      return;
-    }
-
-    const startDateTime = new Date(`${step2Data?.date}T${step2Data?.time}:00`);
-    const endDateTime = new Date(startDateTime.getTime() + 60 * 60000);
-
-    console.log("Start DateTime:", startDateTime);
-    console.log("End DateTime:", endDateTime);
-
-    if (isNaN(startDateTime) || isNaN(endDateTime)) {
-      console.error("Invalid date or time value: unable to parse date or time");
-      return;
-    }
-
-    const event = {
-      summary: "Horse Ride Booking",
-      description: `Your ${step1Data?.horse} horse ride booking details`,
-      start: {
-        dateTime: startDateTime.toISOString(),
-        timeZone: "America/Los_Angeles",
-      },
-      end: {
-        dateTime: endDateTime.toISOString(),
-        timeZone: "America/Los_Angeles",
-      },
-      attendees: [{ email: step3Data?.email }],
-    };
-
     try {
+      localStorage.setItem("step3Data", JSON.stringify(step3Data));
+
+      console.log("Step 2 Data:", step2Data);
+
+      if (!step2Data?.date || !step2Data?.time) {
+        console.error("Invalid date or time value: date or time is missing");
+        return;
+      }
+
+      const startDateTime = new Date(
+        `${step2Data?.date}T${step2Data?.time}:00`
+      );
+      const endDateTime = new Date(startDateTime.getTime() + 60 * 60000);
+
+      console.log("Start DateTime:", startDateTime);
+      console.log("End DateTime:", endDateTime);
+
+      if (isNaN(startDateTime) || isNaN(endDateTime)) {
+        console.error(
+          "Invalid date or time value: unable to parse date or time"
+        );
+        return;
+      }
+
+      const event = {
+        summary: "Horse Ride Booking",
+        description: `Your ${step1Data?.horse} horse ride booking details`,
+        start: {
+          dateTime: startDateTime.toISOString(),
+          timeZone: "America/Los_Angeles",
+        },
+        end: {
+          dateTime: endDateTime.toISOString(),
+          timeZone: "America/Los_Angeles",
+        },
+        attendees: [{ email: step3Data?.email }],
+      };
+
       await gapi.client.load("calendar", "v3");
       const authInstance = gapi.auth2.getAuthInstance();
       if (!authInstance.isSignedIn.get()) {
@@ -152,27 +156,29 @@ const Form = () => {
         setToastMessage(`Your ride has been booked for ${formattedDateTime}!`);
         setShowToast(true);
         setTimeout(() => setShowToast(false), 10000);
-         await sendEmail({
-           horse: step1Data?.horse,
-           date: new Date(step2Data?.date).toLocaleDateString("en-US", {
-             day: "2-digit",
-             month: "short",
-             year: "numeric",
-           }),
-           time: step2Data?.time,
-           location: step2Data?.location,
-           eventLink: eventLink,
-           name: step3Data?.name,
-           to: step3Data?.email,
-         });
+
+        await sendEmail({
+          horse: step1Data?.horse,
+          date: new Date(step2Data?.date).toLocaleDateString("en-US", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          }),
+          time: step2Data?.time,
+          location: step2Data?.location,
+          eventLink: eventLink,
+          name: step3Data?.name,
+          to: step3Data?.email,
+        });
         handleReset();
       } else {
         console.error("Error creating event: ", response.result);
       }
     } catch (error) {
-      console.error("Error creating event: ", error);
+      console.error("Error during finish process: ", error);
     }
   };
+
 
   return (
     <div className="flex flex-col items-center justify-center px-6 py-4 bg-white">

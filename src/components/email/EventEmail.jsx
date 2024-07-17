@@ -23,7 +23,9 @@ const EventEmail = ({
   eventLink,
   name,
   barcodeImage,
-}) => (
+}) => {
+    const horseObject = (horseData.filter((horseData) => horseData.name === horse));
+    return (
   <Tailwind
     config={{
       theme: {
@@ -79,7 +81,7 @@ const EventEmail = ({
               <div style={{ display: "flex", gap: "0.5rem" }}>
                 <Img
                   className="inline-block size-8 rounded-full ring-2 ring-white"
-                  src={horseData.filter()}
+                  src={horseObject.image}
                   alt="Image Description"
                 />
                 <p>{horse}</p>
@@ -98,6 +100,7 @@ const EventEmail = ({
       </Body>
     </Html>
   </Tailwind>
-);
+  );
+}
 
 export default EventEmail;
