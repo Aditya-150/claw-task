@@ -12,11 +12,14 @@ import { gapi } from "gapi-script";
 import { loadClient } from "../../api/googleApi"; // Adjust the path as needed
 import Toast from "../Toast/Toast";
 import sendEmail from "../../utils/sendEmail";
+import ErrorToast from "../Toast/ErrorToast";
 
 const Form = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [toastMessage, setToastMessage] = useState("");
+  const [errorToastMessage, setErrorToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
   const dispatch = useDispatch();
 
   const step1Data = useSelector((state) => state.form?.step1Data || {});
@@ -56,8 +59,20 @@ const Form = () => {
 
   const handleNext = () => {
     if (currentStep === 1) {
+      if (!step1Data.horse) {
+        setErrorToastMessage("Please select a horse to proceed.");
+        setShowErrorToast(true);
+        setTimeout(() => setShowErrorToast(false), 5000);
+        return;
+      }
       localStorage.setItem("step1Data", JSON.stringify(step1Data));
     } else if (currentStep === 2) {
+      if (!step2Data.date || !step2Data.time || !step2Data.location) {
+        setErrorToastMessage("Please fill all the fields to proceed.");
+        setShowErrorToast(true);
+        setTimeout(() => setShowErrorToast(false), 5000);
+        return;
+      }
       localStorage.setItem("step2Data", JSON.stringify(step2Data));
     }
     setCurrentStep((prevStep) => Math.min(prevStep + 1, 3));
@@ -134,11 +149,9 @@ const Form = () => {
           month: "short",
           year: "numeric",
         })}`;
-        setToastMessage(
-          `Your ${step1Data?.horse} ride has been booked for ${formattedDateTime}!`
-        );
+        setToastMessage(`Your ride has been booked for ${formattedDateTime}!`);
         setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000);
+        setTimeout(() => setShowToast(false), 10000);
          await sendEmail({
            horse: step1Data?.horse,
            date: new Date(step2Data?.date).toLocaleDateString("en-US", {
@@ -162,7 +175,7 @@ const Form = () => {
   };
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
+    <div className="flex flex-col items-center justify-center px-6 py-4 bg-white">
       <div>
         <ul className="relative flex flex-row gap-x-2">
           {[1, 2, 3].map((step) => (
@@ -208,77 +221,126 @@ const Form = () => {
             <PersonalInfo />
           </div>
 
-          <div className="mt-5 flex justify-between items-center gap-x-2">
-            {currentStep < 3 && (
-              <button
-                type="button"
-                className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-primary-dark disabled:opacity-50 disabled:pointer-events-none"
-                onClick={handleNext}
-              >
-                Next
-                <svg
-                  className="flex-shrink-0 size-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+          <div className="mt-10 flex justify-between items-center gap-x-2">
+            {currentStep === 1 && (
+              <>
+                <div></div>
+                <button
+                  type="button"
+                  className="py-2 px-3 ml-auto inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-primary-dark disabled:opacity-50 disabled:pointer-events-none"
+                  onClick={handleNext}
                 >
-                  <path d="m9 18 6-6-6-6"></path>
-                </svg>
-              </button>
+                  Next
+                  <svg
+                    className="flex-shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m9 18 6-6-6-6"></path>
+                  </svg>
+                </button>
+              </>
             )}
-            <button
-              type="button"
-              className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-              onClick={handleBack}
-              disabled={currentStep === 1}
-            >
-              <svg
-                className="flex-shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6"></path>
-              </svg>
-              Back
-            </button>
-
-            {currentStep === 3 && (
-              <button
-                type="button"
-                className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-primary-dark disabled:opacity-50 disabled:pointer-events-none"
-                onClick={handleFinish}
-              >
-                Finish
-              </button>
+            {currentStep === 2 && (
+              <>
+                <button
+                  type="button"
+                  className="py-2 px-3 mr-auto inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                  onClick={handleBack}
+                >
+                  <svg
+                    className="flex-shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m15 18-6-6 6-6"></path>
+                  </svg>
+                  Back
+                </button>
+                <button
+                  type="button"
+                  className="py-2 px-3 ml-auto inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-primary-dark disabled:opacity-50 disabled:pointer-events-none"
+                  onClick={handleNext}
+                >
+                  Next
+                  <svg
+                    className="flex-shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m9 18 6-6-6-6"></path>
+                  </svg>
+                </button>
+              </>
             )}
-
             {currentStep === 3 && (
-              <button
-                type="reset"
-                className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-primary-dark disabled:opacity-50 disabled:pointer-events-none"
-                onClick={handleReset}
-              >
-                Reset
-              </button>
+              <>
+                <button
+                  type="button"
+                  className="py-2 px-3 mr-auto inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                  onClick={handleBack}
+                >
+                  <svg
+                    className="flex-shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m15 18-6-6 6-6"></path>
+                  </svg>
+                  Back
+                </button>
+                <button
+                  type="button"
+                  className="py-2 px-3 ml-2 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-primary-dark disabled:opacity-50 disabled:pointer-events-none"
+                  onClick={handleFinish}
+                >
+                  Finish
+                </button>
+                <button
+                  type="reset"
+                  className="py-2 px-3 ml-2 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-primary-dark disabled:opacity-50 disabled:pointer-events-none"
+                  onClick={handleReset}
+                >
+                  Reset
+                </button>
+              </>
             )}
           </div>
         </div>
       </div>
 
-      {showToast && <Toast message={toastMessage} />}
+      {showErrorToast && <ErrorToast message={errorToastMessage} />}
+      {showToast && (
+        <Toast message={toastMessage} horseName={step1Data?.horse} />
+      )}
     </div>
   );
 };

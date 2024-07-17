@@ -40,7 +40,7 @@ const PersonalInfo = () => {
     if (name === "email" && !validateEmail(value)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: "Invalid email address",
+        email: "Please enter a valid email address. Example: hello@example.com",
       }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
@@ -49,7 +49,7 @@ const PersonalInfo = () => {
     if (name === "phone" && !validatePhone(value)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        phone: "Invalid phone number",
+        phone: "Invalid phone number. Please enter a 10-digit number.",
       }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, phone: "" }));
@@ -63,14 +63,17 @@ const PersonalInfo = () => {
 
   return (
     <div>
-      <h3>Step 3: Personal Information</h3>
+      <h3 className="mt-10 font-semibold text-xl">Enter Personal Information</h3>
+      <p className="mb-6 text-gray-600">
+        Please fill out your email, name, and phone number in order to confirm your booking.
+      </p>
       <input
         type="text"
         name="name"
         value={formData.name}
         onChange={handleChange}
         placeholder="Name"
-        className="border p-2 mb-2 w-full"
+        className="border focus:border-primary py-2 px-6 rounded mb-4 w-full"
       />
       <input
         type="email"
@@ -78,18 +81,26 @@ const PersonalInfo = () => {
         value={formData.email}
         onChange={handleChange}
         placeholder="Email"
-        className="border p-2 mb-2 w-full"
+        className={`border focus:border-primary py-2 px-6 rounded w-full ${
+          errors.email ? "border-red-500 mb-1" : "mb-4"
+        }`}
       />
-      {errors.email && <p className="text-red-500">{errors.email}</p>}
+      {errors.email && (
+        <p className="text-red-500 mb-4 text-sm">{errors.email}</p>
+      )}
       <input
         type="text"
         name="phone"
         value={formData.phone}
         onChange={handleChange}
         placeholder="Phone Number"
-        className="border p-2 mb-2 w-full"
+        className={`border focus:border-primary py-2 px-6 rounded w-full ${
+          errors.email ? "border-red-500 mb-1" : "mb-4"
+        }`}
       />
-      {errors.phone && <p className="text-red-500">{errors.phone}</p>}
+      {errors.phone && (
+        <p className="text-red-500 mb-4 text-sm">{errors.phone}</p>
+      )}
     </div>
   );
 };

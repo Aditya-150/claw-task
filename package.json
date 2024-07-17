@@ -56,9 +56,12 @@
     "nodemailer": "^6.9.14",
     "preline": "^2.3.0",
     "react-barcode": "^1.5.3",
+    "react-datepicker": "^7.3.0",
     "react-parallax-tilt": "^1.7.232",
     "react-slick": "^0.30.2",
     "redux": "^5.0.1",
+    "slick-carousel": "^1.8.1",
+    "tailwind-datepicker-react": "^1.4.3",
     "vaul": "^0.9.1",
     "webpack-dev-server": "^5.0.4"
   },

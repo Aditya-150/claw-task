@@ -35,7 +35,8 @@ const ChooseHorse = () => {
 
   return (
     <div>
-      <h3>Step 1: Choose Horse</h3>
+      <h3 className="mt-10 font-semibold text-xl">Choose Your Horse</h3>
+      <p className="mb-6 text-gray-600">Below are 4 types of horses available. Please select one based on your requirements.</p>
       {horses.map((horse) => (
         <HorseRadioInput
           key={horse.id}

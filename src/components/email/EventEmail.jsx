@@ -12,7 +12,8 @@ import {
   Tailwind,
   Img,
 } from "@react-email/components";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo.png";
+import { horseData } from "../Form/horseData";
 
 const EventEmail = ({
   horse,
@@ -35,10 +36,29 @@ const EventEmail = ({
       <Preview>Horse Ride Booking Details</Preview>
       <Body>
         <Heading>Your Horse Ride Booking Details</Heading>
-        <Container>
-          <div className="bg-gray-200 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-200 rounded-xl flex flex-col justify-between p-8 gap-32 text-white w-full">
-            <div className="flex-shrink-0 flex row items-start justify-between">
-              <div className="flex flex-col items-start gap-3">
+        <Container className="bg-gradient-to-br from-secondary to-primary">
+          <div
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              borderRadius: "1rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              padding: "2rem",
+              gap: "2rem",
+              width: "100%",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                }}
+              >
                 <Text className="uppercase font-semibold text-lg">{name}</Text>
                 <div>
                   <Text className="font-regular text-base uppercase">
@@ -47,18 +67,28 @@ const EventEmail = ({
                   <Text className="font-regular text-sm">{">" + location}</Text>
                 </div>
               </div>
-              <Img src={logo} alt="logo" className="h-full" />
+              <Img src={logo} alt="logo" style={{ height: "100%" }} />
             </div>
-            <div className="flex-shrink-0 flex row items-end justify-between">
-              <div className="flex row items-center justify-between gap-2">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+              }}
+            >
+              <div style={{ display: "flex", gap: "0.5rem" }}>
                 <Img
                   className="inline-block size-8 rounded-full ring-2 ring-white"
-                  src={logo}
+                  src={horseData.filter()}
                   alt="Image Description"
                 />
                 <p>{horse}</p>
               </div>
-              <Img src={barcodeImage} alt="Barcode" className="w-48 h-fit" />
+              <Img
+                src={barcodeImage}
+                alt="Barcode"
+                style={{ width: "12rem", height: "fit-content" }}
+              />
             </div>
           </div>
         </Container>

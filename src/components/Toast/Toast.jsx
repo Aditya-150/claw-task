@@ -1,20 +1,37 @@
-import React from "react";
+import { BadgeCheckIcon } from "lucide-react";
+import React, { useState } from "react";
 
-export default function Toast({ message }) {
+export default function Toast({ message, horseName }) {
+  const [isVisible, setIsVisible] = useState(true);
+
   return (
     <div
       id="dismiss-toast"
-      className="hs-removing:translate-x-5 hs-removing:opacity-0 transition duration-1000 ease-in-out max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg z-50 fixed bottom-10 xl:right-5 max-xl:left-0 max-xl:right-0 max-xl:mx-auto"
+      className={`hs-removing:translate-x-5 hs-removing:opacity-0 transition duration-300 ease-in-out max-sm:px-6 max-w-sm bg-white border border-gray-200 rounded-lg z-50 fixed bottom-1/2 left-0 right-0 mx-auto ${
+        isVisible ? "" : "hidden"
+      }`}
       role="alert"
     >
-      <div className="flex p-4">
-        <p className="text-sm text-gray-700">{message}</p>
+      <div className="flex p-4 relative">
+        <div className="flex flex-col items-center justify-center text-center">
+          <div className="size-10 flex items-center justify-center rounded-xl mb-2 bg-primary">
+            <BadgeCheckIcon className="size-5 text-white" />
+          </div>
+          <h5 className="font-semibold text-base text-gray-800 mb-1">
+            Successfully Booked!
+          </h5>
+          <p className="text-sm text-gray-700 text-left">
+            Your <span className="font-semibold">{horseName}</span> ride has
+            been booked for <span className="font-semibold">{message}</span>!
+          </p>
+        </div>
 
         <div className="ms-auto">
           <button
             type="button"
-            className="inline-flex flex-shrink-0 justify-center items-center size-5 rounded-lg text-gray-800 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100"
+            className="inline-flex absolute right-2 top-2 flex-shrink-0 justify-center items-center size-5 rounded-lg text-gray-800 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100 h-fit w-fit"
             data-hs-remove-element="#dismiss-toast"
+            onClick={() => setIsVisible(false)}
           >
             <span className="sr-only">Close</span>
             <svg
