@@ -1,4 +1,3 @@
-// src/components/email/EventEmail.jsx
 import React from "react";
 import {
   Html,

@@ -1,7 +1,7 @@
 import { BadgeCheckIcon } from "lucide-react";
 import React, { useState } from "react";
 
-export default function Toast({ message, horseName }) {
+export default function Toast({ message }) {
   const [isVisible, setIsVisible] = useState(true);
 
   return (
@@ -21,8 +21,7 @@ export default function Toast({ message, horseName }) {
             Successfully Booked!
           </h5>
           <p className="text-sm text-gray-700 text-left">
-            Your <span className="font-semibold">{horseName}</span> ride has
-            been booked for <span className="font-semibold">{message}</span>!
+           {message}
           </p>
         </div>
 

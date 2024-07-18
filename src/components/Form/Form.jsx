@@ -9,7 +9,7 @@ import {
   setStep3Data,
 } from "../../redux/actions/formSlice";
 import { gapi } from "gapi-script";
-import { loadClient } from "../../api/googleApi"; // Adjust the path as needed
+import { loadClient } from "../../api/googleApi"; 
 import Toast from "../Toast/Toast";
 import sendEmail from "../../utils/sendEmail";
 import ErrorToast from "../Toast/ErrorToast";
@@ -153,7 +153,7 @@ const Form = () => {
           month: "short",
           year: "numeric",
         })}`;
-        setToastMessage(`Your ride has been booked for ${formattedDateTime}!`);
+        setToastMessage(`Your ride for ${step1Data?.horse} has been booked for ${formattedDateTime}!`);
         setShowToast(true);
         setTimeout(() => setShowToast(false), 10000);
 
@@ -304,7 +304,7 @@ const Form = () => {
               <>
                 <button
                   type="button"
-                  className="py-2 px-3 mr-auto inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                  className="py-2 px-3 mr-auto inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-lg hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                   onClick={handleBack}
                 >
                   <svg
@@ -328,7 +328,7 @@ const Form = () => {
                   className="py-2 px-3 ml-2 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-primary-dark disabled:opacity-50 disabled:pointer-events-none"
                   onClick={handleFinish}
                 >
-                  Finish
+                  Submit
                 </button>
                 <button
                   type="reset"
@@ -345,7 +345,7 @@ const Form = () => {
 
       {showErrorToast && <ErrorToast message={errorToastMessage} />}
       {showToast && (
-        <Toast message={toastMessage} horseName={step1Data?.horse} />
+        <Toast message={toastMessage} />
       )}
     </div>
   );

@@ -62,7 +62,7 @@ export default function Hero() {
               </Link>
               <Link
                 className="py-3 select-none px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                to="/"
+                to="https://cal.com/aditya-150"
               >
                 <PhoneCallIcon className="size-4" />
                 Schedule a call
@@ -72,7 +72,7 @@ export default function Hero() {
               <div className="flex -space-x-2">
                 <img
                   className="inline-block size-10 rounded-full ring-2 ring-white"
-                  src="https://images.pexels.com/photos/14610787/pexels-photo-14610787.jpeg"
+                  src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
                   alt="Image Description"
                 />
                 <img

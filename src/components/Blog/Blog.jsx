@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 export default function Blog() {
   return (
-    <section className="mx-auto max-w-7xl pt-40 2xl:px-0 px-6">
+    <section className="mx-auto max-w-7xl pt-40 2xl:px-0 px-6" id="blog">
       <div className="mb-10 space-y-4 px-6 md:px-0">
         <h2 className="text-left text-2xl font-bold text-gray-800 md:text-3xl">
           Some Latest Updates

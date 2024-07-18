@@ -36,9 +36,9 @@ export default function Footer() {
               <p>
                 <Link
                   className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
-                  to="/#"
+                  to="/#reviews"
                 >
-                  Docs
+                  Customers
                 </Link>
               </p>
             </div>
@@ -78,9 +78,9 @@ export default function Footer() {
               <p>
                 <Link
                   className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
-                  to="/#"
+                  to="/privacy-policy"
                 >
-                  Customers
+                  Privacy Policy
                 </Link>
               </p>
             </div>
