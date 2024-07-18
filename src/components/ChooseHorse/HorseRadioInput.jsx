@@ -71,7 +71,7 @@ const ViewDetails = ({ horse }) => {
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 border-none bg-black bg-opacity-50 z-50" />
-        <Drawer.Content className="fixed inset-0 border-none bg-white p-4 rounded-lg shadow-lg z-50 overflow-y-auto h-[calc(200vh)]">
+        <Drawer.Content className="fixed inset-0 border-none bg-white p-4 rounded-lg shadow-lg z-50 overflow-y-auto touch-pan-y h-[calc(200vh)]">
           <Drawer.Handle className="w-full h-8 bg-gray-300 rounded-t-lg" />
           <div className="mx-auto sm:max-w-xl max-w-fit slider-container pt-4">
             <Slider {...settings}>
